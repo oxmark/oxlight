@@ -1,6 +1,6 @@
 [package]
 name = "oxlight"
-version = "0.0.0"
+version = "0.1.0"
 edition = "2021"
 rust-version = "1.82"
 description = "Syntax highlighting with TextMate grammars and VS Code themes, a Rust port of Shiki"
