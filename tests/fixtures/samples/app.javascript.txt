@@ -1,0 +1,23 @@
+// @ts-check
+import { readFile } from 'node:fs/promises'
+
+const re = /^(?:\d{3}-)?\d{4}$/gi
+let total = 0
+
+/**
+ * Sum values.
+ * @param {number[]} xs
+ */
+export async function sum(xs = [], ...rest) {
+  for (const x of xs) total += x ?? 0
+  return `total: ${total * 2} <b>&amp;</b>`
+}
+
+class Animal extends Base {
+  #secret = 1
+  static create() { return new Animal() }
+  get name() { return this.#secret > 0 ? 'cat' : "dog" }
+}
+
+const fn = async (a, b) => { await sum([a, b]); }
+document.querySelector('#app')?.addEventListener('click', e => console.log(e.target))

@@ -1,0 +1,13 @@
+@import url("theme.css");
+:root { --main: #ff0080; }
+
+.card > a:hover::after,
+#id[data-x="1"] {
+  color: var(--main, rgb(0 0 0 / 50%));
+  margin: 0 auto !important;
+  transition: all .3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+  .card { display: grid; grid-template-columns: repeat(2, 1fr); }
+}

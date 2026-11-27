@@ -1,0 +1,14 @@
+{
+  "name": "oxlight-fixtures",
+  "private": true,
+  "type": "module",
+  "description": "Generates the golden test fixtures of oxlight from the reference Shiki implementation.",
+  "scripts": {
+    "generate": "node generate.mjs"
+  },
+  "dependencies": {
+    "shiki": "3.23.0",
+    "tm-grammars": "*",
+    "tm-themes": "*"
+  }
+}

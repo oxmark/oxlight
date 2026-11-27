@@ -1,0 +1,17 @@
+<pre class="shiki min-light" style="background-color:#ffffff;color:#24292eff" tabindex="0"><code><span class="line"><span style="color:#C2C3C5">#!/usr/bin/env bash</span></span>
+<span class="line"><span style="color:#6F42C1">set</span><span style="color:#2B5581"> -euo</span><span style="color:#2B5581"> pipefail</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF">NAME</span><span style="color:#D32F2F">=</span><span style="color:#22863A">"${1</span><span style="color:#D32F2F">:-</span><span style="color:#22863A">world}"</span></span>
+<span class="line"><span style="color:#D32F2F">for</span><span style="color:#24292EFF"> f </span><span style="color:#D32F2F">in</span><span style="color:#2B5581"> *.txt</span><span style="color:#24292EFF">; </span><span style="color:#D32F2F">do</span></span>
+<span class="line"><span style="color:#D32F2F">  if</span><span style="color:#24292EFF"> [[ </span><span style="color:#D32F2F">-f</span><span style="color:#22863A"> "$f"</span><span style="color:#D32F2F"> &#x26;&#x26;</span><span style="color:#24292EFF"> $f </span><span style="color:#D32F2F">!=</span><span style="color:#D32F2F"> *</span><span style="color:#24292EFF">.bak ]]; </span><span style="color:#D32F2F">then</span></span>
+<span class="line"><span style="color:#6F42C1">    echo</span><span style="color:#22863A"> "Processing $f"</span><span style="color:#D32F2F"> >&#x26;2</span></span>
+<span class="line"><span style="color:#6F42C1">    cat</span><span style="color:#22863A"> "$f"</span><span style="color:#D32F2F"> |</span><span style="color:#6F42C1"> grep</span><span style="color:#2B5581"> -E</span><span style="color:#22863A"> '^[a-z]+'</span><span style="color:#D32F2F"> |</span><span style="color:#6F42C1"> wc</span><span style="color:#2B5581"> -l</span></span>
+<span class="line"><span style="color:#D32F2F">  fi</span></span>
+<span class="line"><span style="color:#D32F2F">done</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F">function</span><span style="color:#6F42C1"> greet</span><span style="color:#212121">()</span><span style="color:#24292EFF"> {</span></span>
+<span class="line"><span style="color:#D32F2F">  local</span><span style="color:#24292EFF"> msg</span><span style="color:#D32F2F">=</span><span style="color:#24292EFF">$(</span><span style="color:#6F42C1">printf</span><span style="color:#22863A"> 'Hello, %s!'</span><span style="color:#22863A"> "$NAME"</span><span style="color:#24292EFF">)</span></span>
+<span class="line"><span style="color:#6F42C1">  echo</span><span style="color:#22863A"> "$msg"</span></span>
+<span class="line"><span style="color:#24292EFF">}</span></span>
+<span class="line"><span style="color:#6F42C1">greet</span><span style="color:#212121"> &#x26;&#x26;</span><span style="color:#6F42C1"> exit</span><span style="color:#1976D2"> 0</span></span>
+<span class="line"></span></code></pre>

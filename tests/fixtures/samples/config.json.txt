@@ -1,0 +1,9 @@
+{
+  "name": "oxlight",
+  "version": "0.1.0",
+  "private": true,
+  "keywords": ["highlight", "textmate"],
+  "nested": { "n": -1.5e3, "nil": null },
+  // jsonc comment is invalid here
+  "escape": "a \"quoted\" é string"
+}

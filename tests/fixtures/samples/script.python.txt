@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Module docstring."""
+from __future__ import annotations
+import re
+
+@dataclass(frozen=True)
+class Item:
+    name: str
+    price: float = 0.0
+
+    def total(self, qty: int = 1) -> float:
+        return self.price * qty  # comment
+
+async def main(*args, **kwargs):
+    data = {"a": [1, 2.5, 3e10], 'b': None, "c": f"{args!r:>10}"}
+    if re.match(r"^\d+$", "123") and not False:
+        print(b"bytes", 0x1F, lambda x: x ** 2)
+    return [i for i in range(10) if i % 2 == 0]

@@ -1,0 +1,22 @@
+interface User<T extends object = {}> {
+  readonly id: number
+  name?: string
+  meta: Record<string, T>
+}
+
+type Pick2<T, K extends keyof T> = { [P in K]: T[P] }
+
+enum Color { Red = 'RED', Green = 'GREEN' }
+
+export function greet(user: User): string {
+  const label = user.name as string ?? 'anon'
+  return `Hello, ${label}!`
+}
+
+@Component({ selector: 'app' })
+abstract class Repo<T> implements Iterable<T> {
+  private items: T[] = []
+  constructor(protected readonly db: Db) {}
+  abstract find(id: number): Promise<T | undefined>
+  *[Symbol.iterator]() { yield* this.items }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><?= htmlspecialchars($title) ?></title>
+  <style>body { color: #333; margin: 0 auto; }</style>
+</head>
+<body>
+<?php
+declare(strict_types=1);
+
+namespace App\Http;
+
+use Psr\Log\LoggerInterface;
+
+#[Attribute]
+final class Controller extends Base implements Handler
+{
+    private const VERSION = '1.0';
+
+    public function __construct(private readonly LoggerInterface $logger) {}
+
+    public function handle(array $request): ?string
+    {
+        $name = $request['name'] ?? "world";
+        $sql = "SELECT * FROM users WHERE id = {$request['id']}";
+        $html = <<<HTML
+            <p>Hello {$name}</p>
+            HTML;
+        // comment
+        return match (true) {
+            strlen($name) > 3 => sprintf('%s!', $name),
+            default => null,
+        };
+    }
+}
+?>
+<script>
+  const data = <?= json_encode($data) ?>;
+  console.log(data);
+</script>
+</body>
+</html>

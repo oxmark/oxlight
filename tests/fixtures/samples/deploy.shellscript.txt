@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAME="${1:-world}"
+for f in *.txt; do
+  if [[ -f "$f" && $f != *.bak ]]; then
+    echo "Processing $f" >&2
+    cat "$f" | grep -E '^[a-z]+' | wc -l
+  fi
+done
+
+function greet() {
+  local msg=$(printf 'Hello, %s!' "$NAME")
+  echo "$msg"
+}
+greet && exit 0

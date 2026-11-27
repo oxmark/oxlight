@@ -1,0 +1,30 @@
+//! Crate docs
+use std::collections::HashMap;
+
+/// A point in space.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Point<T> {
+    x: T,
+    y: T,
+}
+
+impl<T: std::ops::Add<Output = T> + Copy> Point<T> {
+    pub fn sum(&self) -> T {
+        self.x + self.y
+    }
+}
+
+fn main() {
+    let mut map: HashMap<&str, i32> = HashMap::new();
+    map.insert("answer", 42);
+    let s = r#"raw "string""#;
+    let c = 'c';
+    /* block
+       comment */
+    for (k, v) in &map {
+        println!("{k} => {v:>4} {}", s.len() as u8 + b'a');
+    }
+    let _ = 0x1F_u32 << 2 & !0b1010;
+    macro_rules! sq { ($e:expr) => { $e * $e }; }
+    let lifetime: &'static str = "<tag> & \"quote\"";
+}

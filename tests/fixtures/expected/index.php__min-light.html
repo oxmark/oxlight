@@ -1,0 +1,43 @@
+<pre class="shiki min-light" style="background-color:#ffffff;color:#24292eff" tabindex="0"><code><span class="line"><span style="color:#D32F2F">&#x3C;!</span><span style="color:#24292EFF">DOCTYPE html</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;</span><span style="color:#24292EFF">html lang</span><span style="color:#D32F2F">=</span><span style="color:#22863A">"en"</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;</span><span style="color:#24292EFF">head</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">  &#x3C;</span><span style="color:#24292EFF">title</span><span style="color:#D32F2F">>&#x3C;?=</span><span style="color:#6F42C1"> htmlspecialchars</span><span style="color:#212121">(</span><span style="color:#6F42C1">$title</span><span style="color:#212121">)</span><span style="color:#D32F2F"> ?>&#x3C;/</span><span style="color:#24292EFF">title</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">  &#x3C;</span><span style="color:#24292EFF">style</span><span style="color:#D32F2F">></span><span style="color:#24292EFF">body { color: </span><span style="color:#C2C3C5">#333; margin: 0 auto; }&#x3C;/style></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;/</span><span style="color:#24292EFF">head</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;</span><span style="color:#24292EFF">body</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;?</span><span style="color:#24292EFF">php</span></span>
+<span class="line"><span style="color:#D32F2F">declare</span><span style="color:#24292EFF">(strict_types</span><span style="color:#D32F2F">=</span><span style="color:#1976D2">1</span><span style="color:#24292EFF">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F">namespace</span><span style="color:#6F42C1"> App</span><span style="color:#212121">\</span><span style="color:#6F42C1">Http</span><span style="color:#24292EFF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F">use</span><span style="color:#1976D2"> Psr</span><span style="color:#212121">\</span><span style="color:#1976D2">Log</span><span style="color:#212121">\</span><span style="color:#1976D2">LoggerInterface</span><span style="color:#24292EFF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF">#[</span><span style="color:#1976D2">Attribute</span><span style="color:#24292EFF">]</span></span>
+<span class="line"><span style="color:#D32F2F">final</span><span style="color:#D32F2F"> class</span><span style="color:#6F42C1"> Controller</span><span style="color:#D32F2F"> extends</span><span style="color:#6F42C1"> Base</span><span style="color:#D32F2F"> implements</span><span style="color:#6F42C1"> Handler</span></span>
+<span class="line"><span style="color:#24292EFF">{</span></span>
+<span class="line"><span style="color:#D32F2F">    private</span><span style="color:#D32F2F"> const</span><span style="color:#24292EFF"> VERSION </span><span style="color:#D32F2F">=</span><span style="color:#22863A"> '1.0'</span><span style="color:#24292EFF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F">    public</span><span style="color:#D32F2F"> function</span><span style="color:#6F42C1"> __construct</span><span style="color:#24292EFF">(</span><span style="color:#D32F2F">private</span><span style="color:#D32F2F"> readonly</span><span style="color:#1976D2"> LoggerInterface</span><span style="color:#24292EFF"> $logger) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F">    public</span><span style="color:#D32F2F"> function</span><span style="color:#6F42C1"> handle</span><span style="color:#24292EFF">(</span><span style="color:#D32F2F">array</span><span style="color:#24292EFF"> $request)</span><span style="color:#D32F2F">:</span><span style="color:#D32F2F"> ?string</span></span>
+<span class="line"><span style="color:#24292EFF">    {</span></span>
+<span class="line"><span style="color:#24292EFF">        $name </span><span style="color:#D32F2F">=</span><span style="color:#24292EFF"> $request[</span><span style="color:#22863A">'name'</span><span style="color:#24292EFF">] </span><span style="color:#D32F2F">??</span><span style="color:#22863A"> "world"</span><span style="color:#24292EFF">;</span></span>
+<span class="line"><span style="color:#24292EFF">        $sql </span><span style="color:#D32F2F">=</span><span style="color:#22863A"> "</span><span style="color:#D32F2F">SELECT</span><span style="color:#D32F2F"> *</span><span style="color:#D32F2F"> FROM</span><span style="color:#22863A"> users </span><span style="color:#D32F2F">WHERE</span><span style="color:#22863A"> id </span><span style="color:#D32F2F">=</span><span style="color:#22863A"> {$request['id']}"</span><span style="color:#24292EFF">;</span></span>
+<span class="line"><span style="color:#24292EFF">        $html </span><span style="color:#D32F2F">=</span><span style="color:#2B5581"> &#x3C;&#x3C;&#x3C;</span><span style="color:#D32F2F">HTML</span></span>
+<span class="line"><span style="color:#2B5581">            &#x3C;</span><span style="color:#22863A">p</span><span style="color:#2B5581">>Hello {$name}&#x3C;/</span><span style="color:#22863A">p</span><span style="color:#2B5581">></span></span>
+<span class="line"><span style="color:#D32F2F">            HTML</span><span style="color:#24292EFF">;</span></span>
+<span class="line"><span style="color:#C2C3C5">        // comment</span></span>
+<span class="line"><span style="color:#D32F2F">        return</span><span style="color:#D32F2F"> match</span><span style="color:#24292EFF"> (</span><span style="color:#1976D2">true</span><span style="color:#24292EFF">) {</span></span>
+<span class="line"><span style="color:#6F42C1">            strlen</span><span style="color:#212121">(</span><span style="color:#6F42C1">$name</span><span style="color:#212121">)</span><span style="color:#D32F2F"> ></span><span style="color:#1976D2"> 3</span><span style="color:#D32F2F"> =></span><span style="color:#6F42C1"> sprintf</span><span style="color:#212121">(</span><span style="color:#22863A">'%s!'</span><span style="color:#212121">,</span><span style="color:#6F42C1"> $name</span><span style="color:#212121">),</span></span>
+<span class="line"><span style="color:#D32F2F">            default</span><span style="color:#D32F2F"> =></span><span style="color:#1976D2"> null</span><span style="color:#212121">,</span></span>
+<span class="line"><span style="color:#24292EFF">        };</span></span>
+<span class="line"><span style="color:#24292EFF">    }</span></span>
+<span class="line"><span style="color:#24292EFF">}</span></span>
+<span class="line"><span style="color:#D32F2F">?></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;</span><span style="color:#24292EFF">script</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">  const</span><span style="color:#24292EFF"> data </span><span style="color:#D32F2F">=</span><span style="color:#D32F2F"> &#x3C;?=</span><span style="color:#6F42C1"> json_encode</span><span style="color:#212121">(</span><span style="color:#6F42C1">$data</span><span style="color:#212121">)</span><span style="color:#D32F2F"> ?></span><span style="color:#24292EFF">;</span></span>
+<span class="line"><span style="color:#24292EFF">  console</span><span style="color:#D32F2F">.</span><span style="color:#6F42C1">log</span><span style="color:#212121">(</span><span style="color:#6F42C1">data</span><span style="color:#212121">)</span><span style="color:#24292EFF">;</span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;/</span><span style="color:#24292EFF">script</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;/</span><span style="color:#24292EFF">body</span><span style="color:#D32F2F">></span></span>
+<span class="line"><span style="color:#D32F2F">&#x3C;/</span><span style="color:#24292EFF">html</span><span style="color:#D32F2F">></span></span>
+<span class="line"></span></code></pre>

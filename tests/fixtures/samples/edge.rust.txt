@@ -1,0 +1,6 @@
+
+    
+fn tabs()	{	}
+let unicode = "héllo wörld 🎉 日本語";
+	// trailing whitespace   
+let x = 1;  

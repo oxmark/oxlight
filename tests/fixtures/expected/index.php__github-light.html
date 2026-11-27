@@ -1,0 +1,43 @@
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code><span class="line"><span style="color:#D73A49">&#x3C;!</span><span style="color:#005CC5">DOCTYPE</span><span style="color:#005CC5"> html</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5">html</span><span style="color:#005CC5"> lang</span><span style="color:#D73A49">=</span><span style="color:#032F62">"en"</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5">head</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">  &#x3C;</span><span style="color:#005CC5">title</span><span style="color:#D73A49">>&#x3C;?=</span><span style="color:#005CC5"> htmlspecialchars</span><span style="color:#24292E">($title) </span><span style="color:#D73A49">?>&#x3C;/</span><span style="color:#005CC5">title</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">  &#x3C;</span><span style="color:#005CC5">style</span><span style="color:#D73A49">></span><span style="color:#005CC5">body</span><span style="color:#24292E"> { </span><span style="color:#005CC5">color</span><span style="color:#24292E">: </span><span style="color:#6A737D">#333; margin: 0 auto; }&#x3C;/style></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;/</span><span style="color:#005CC5">head</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5">body</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;?</span><span style="color:#005CC5">php</span></span>
+<span class="line"><span style="color:#D73A49">declare</span><span style="color:#24292E">(</span><span style="color:#005CC5">strict_types</span><span style="color:#D73A49">=</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">namespace</span><span style="color:#6F42C1"> App\Http</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">use</span><span style="color:#005CC5"> Psr\Log\LoggerInterface</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">#[</span><span style="color:#005CC5">Attribute</span><span style="color:#24292E">]</span></span>
+<span class="line"><span style="color:#D73A49">final</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> Controller</span><span style="color:#D73A49"> extends</span><span style="color:#6F42C1"> Base</span><span style="color:#D73A49"> implements</span><span style="color:#6F42C1"> Handler</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> const</span><span style="color:#005CC5"> VERSION</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> '1.0'</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> function</span><span style="color:#005CC5"> __construct</span><span style="color:#24292E">(</span><span style="color:#D73A49">private</span><span style="color:#D73A49"> readonly</span><span style="color:#005CC5"> LoggerInterface</span><span style="color:#24292E"> $logger) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> function</span><span style="color:#6F42C1"> handle</span><span style="color:#24292E">(</span><span style="color:#D73A49">array</span><span style="color:#24292E"> $request)</span><span style="color:#D73A49">:</span><span style="color:#D73A49"> ?string</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#24292E">        $name </span><span style="color:#D73A49">=</span><span style="color:#24292E"> $request[</span><span style="color:#032F62">'name'</span><span style="color:#24292E">] </span><span style="color:#D73A49">??</span><span style="color:#032F62"> "world"</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        $sql </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "</span><span style="color:#D73A49">SELECT</span><span style="color:#D73A49"> *</span><span style="color:#D73A49"> FROM</span><span style="color:#032F62"> users </span><span style="color:#D73A49">WHERE</span><span style="color:#032F62"> id </span><span style="color:#D73A49">=</span><span style="color:#032F62"> {</span><span style="color:#24292E">$request</span><span style="color:#032F62">['id']}"</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        $html </span><span style="color:#D73A49">=</span><span style="color:#032F62"> &#x3C;&#x3C;&#x3C;</span><span style="color:#D73A49">HTML</span></span>
+<span class="line"><span style="color:#032F62">            &#x3C;</span><span style="color:#22863A">p</span><span style="color:#032F62">>Hello {</span><span style="color:#24292E">$name</span><span style="color:#032F62">}&#x3C;/</span><span style="color:#22863A">p</span><span style="color:#032F62">></span></span>
+<span class="line"><span style="color:#D73A49">            HTML</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#6A737D">        // comment</span></span>
+<span class="line"><span style="color:#D73A49">        return</span><span style="color:#D73A49"> match</span><span style="color:#24292E"> (</span><span style="color:#005CC5">true</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#005CC5">            strlen</span><span style="color:#24292E">($name) </span><span style="color:#D73A49">></span><span style="color:#005CC5"> 3</span><span style="color:#D73A49"> =></span><span style="color:#005CC5"> sprintf</span><span style="color:#24292E">(</span><span style="color:#032F62">'%s!'</span><span style="color:#24292E">, $name),</span></span>
+<span class="line"><span style="color:#D73A49">            default</span><span style="color:#D73A49"> =></span><span style="color:#005CC5"> null</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">        };</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"><span style="color:#D73A49">?></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5">script</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> data</span><span style="color:#D73A49"> =</span><span style="color:#D73A49"> &#x3C;?=</span><span style="color:#005CC5"> json_encode</span><span style="color:#24292E">($data) </span><span style="color:#D73A49">?></span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#005CC5">  console</span><span style="color:#D73A49">.</span><span style="color:#005CC5">log</span><span style="color:#24292E">(</span><span style="color:#005CC5">data</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;/</span><span style="color:#005CC5">script</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;/</span><span style="color:#005CC5">body</span><span style="color:#D73A49">></span></span>
+<span class="line"><span style="color:#D73A49">&#x3C;/</span><span style="color:#005CC5">html</span><span style="color:#D73A49">></span></span>
+<span class="line"></span></code></pre>

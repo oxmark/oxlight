@@ -1,0 +1,17 @@
+<pre class="shiki one-dark-pro" style="background-color:#282c34;color:#abb2bf" tabindex="0"><code><span class="line"><span style="color:#7F848E;font-style:italic">#!/usr/bin/env bash</span></span>
+<span class="line"><span style="color:#56B6C2">set</span><span style="color:#D19A66"> -euo</span><span style="color:#98C379"> pipefail</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E06C75">NAME</span><span style="color:#56B6C2">=</span><span style="color:#98C379">"</span><span style="color:#E06C75;font-style:italic">${1</span><span style="color:#ABB2BF">:-</span><span style="color:#E06C75">world</span><span style="color:#E06C75;font-style:italic">}</span><span style="color:#98C379">"</span></span>
+<span class="line"><span style="color:#C678DD">for</span><span style="color:#E06C75"> f</span><span style="color:#C678DD"> in</span><span style="color:#98C379"> *.txt</span><span style="color:#ABB2BF">; </span><span style="color:#C678DD">do</span></span>
+<span class="line"><span style="color:#C678DD">  if</span><span style="color:#ABB2BF"> [[ </span><span style="color:#56B6C2">-f</span><span style="color:#98C379"> "</span><span style="color:#E06C75">$f</span><span style="color:#98C379">"</span><span style="color:#56B6C2"> &#x26;&#x26;</span><span style="color:#E06C75"> $f</span><span style="color:#56B6C2"> !=</span><span style="color:#ABB2BF"> *.bak ]]; </span><span style="color:#C678DD">then</span></span>
+<span class="line"><span style="color:#56B6C2">    echo</span><span style="color:#98C379"> "Processing </span><span style="color:#E06C75">$f</span><span style="color:#98C379">"</span><span style="color:#ABB2BF"> >&#x26;2</span></span>
+<span class="line"><span style="color:#61AFEF">    cat</span><span style="color:#98C379"> "</span><span style="color:#E06C75">$f</span><span style="color:#98C379">"</span><span style="color:#ABB2BF"> | </span><span style="color:#61AFEF">grep</span><span style="color:#D19A66"> -E</span><span style="color:#98C379"> '^[a-z]+'</span><span style="color:#ABB2BF"> | </span><span style="color:#61AFEF">wc</span><span style="color:#D19A66"> -l</span></span>
+<span class="line"><span style="color:#C678DD">  fi</span></span>
+<span class="line"><span style="color:#C678DD">done</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C678DD">function</span><span style="color:#61AFEF"> greet</span><span style="color:#ABB2BF">() {</span></span>
+<span class="line"><span style="color:#C678DD">  local</span><span style="color:#E06C75"> msg</span><span style="color:#56B6C2">=</span><span style="color:#ABB2BF">$(</span><span style="color:#56B6C2">printf</span><span style="color:#98C379"> 'Hello, %s!'</span><span style="color:#98C379"> "</span><span style="color:#E06C75">$NAME</span><span style="color:#98C379">"</span><span style="color:#ABB2BF">)</span></span>
+<span class="line"><span style="color:#56B6C2">  echo</span><span style="color:#98C379"> "</span><span style="color:#E06C75">$msg</span><span style="color:#98C379">"</span></span>
+<span class="line"><span style="color:#ABB2BF">}</span></span>
+<span class="line"><span style="color:#61AFEF">greet</span><span style="color:#ABB2BF"> &#x26;&#x26; </span><span style="color:#56B6C2">exit</span><span style="color:#D19A66"> 0</span></span>
+<span class="line"></span></code></pre>
