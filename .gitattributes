@@ -1,0 +1,2 @@
+# Keep LF line endings on every platform: golden tests compare bytes.
+* text=auto eol=lf
